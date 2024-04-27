@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kodelången!</title>
+    <link rel="stylesheet" href="kodelång_stylings.css">
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        // Modell 
+
+        // holder midlertidigteksten som viser om vi gjettet feil eller riktig
+        let correctOrIncorrect = "Who's to say... math is difficult...";
+
+        // lagrer det vi skriver inni input feltet
+        let inputtedAnswer = null;
+
+        // holder det tilfeldige nummere
+        let unknown = 0;
+
+        // lagrer om vi viser eller ikke viser det hemmelige nummeret
+        let isNumberShowing = false;
+
+        // dette er variablen som b+lir vist og holder det hemmelige nummeret
+        let number = "X";
+
+        let crocodile_1 = /*HTML*/`
+            <div class="poemTextStyle">
+                <h2>Dreamer (utdrag)</h2>
+                <div>
+                    <p class="topSubtitle">dikt av Primus St. John (1939-)</p>
+                    <p class="topSubtitle">Communion: Poems 1976-1998</p>
+                    <p class="topSubtitle">hentet fra Poetry Foundation</p>
+                </div>
+                <span>(...)  <b>2</b> (...)</span>
+                <div class="poemExcerptStyle">
+                    <p>What dream is this, is that what you said?</p>
+                    <p>My God, this is the dream of the dragon,</p>
+
+                    <p>the fabulous animal, the amalgam of</p>
+                    <p>aggression, the serpent, the <span class="greenCroco">crocodile</span>, the</p>
+
+                    <p>lion, what we like to think is the</p>
+                    <p>antediluvian nature of love.</p>                    
+                </div>
+                <p class="poemBonusStyle">(...)</p>
+                <p class="endSubtitle">
+                    <a href="https://www.poetryfoundation.org/poems/51382/dreamer">
+                        link til dikt
+                    </a>
+                </p>
+            </div>
+        `;
+        let crocodile_2 = /*HTML*/`
+            <div class="poemTextStyle">
+                <h2><span class="greenCroco">Crocodile</span> Tears</h2>
+                <div>
+                    <p class="topSubtitle">dikt av Kay Ryan (1928-1974)</p>
+                    <p class="topSubtitle">Poetry, issue september 2008</p>
+                    <p class="topSubtitle">hentet fra Poetry Foundation</p>
+                </div>
+                <div class="poemExcerptStyle">
+                    <p>The one sincere</p>
+                    <p><span class="greenCroco">crocodile</span> has</p>
+                    <p>gone dry eyed</p>
+                    <p>for years. Why</p>
+                    <p>bother crying</p>
+                    <p><span class="greenCroco">crocodile</span> tears.</p>
+                </div>
+                <p class="endSubtitle">
+                    <a href="https://www.poetryfoundation.org/poetrymagazine/poems/51589/crocodile-tears-56d22f6d77597">
+                        link til dikt
+                    </a>
+                </p>
+            </div>
+        `;
+        let crocodile_3 = /*HTML*/`
+            <div>
+                <h2>With Animals (utdrag)</h2>
+                <div>
+                    <p class="topSubtitle">dikt av Bert Meyers (1928-1979), del 7 av 9</p>
+                    <p class="topSubtitle"><i>The Wild Olive Tree (1979)</i></p>
+                    <p class="topSubtitle">hentet fra Poetry Foundation</p>
+                </div>
+                <span>(...)  <b>7</b></span>
+                <div class="poemExcerptStyle">
+                    <p>But look at the huge green toad</p>
+                    <p>sanctimonious phlegm</p>
+                    <p>The <span class="greenCroco">crocodile</span> hell's pavement</p>
+                    <p>Bats those weird umbrellas</p>
+                    <p>that open only at night</p>
+                </div>
+                <p class="poemBonusStyle">(...)</p>
+                <p class="endSubtitle">
+                    <a href="https://www.poetryfoundation.org/poetrymagazine/poems/159255/with-animals">
+                        link til dikt
+                    </a>
+                </p>
+            </div>
+        `;
+        let crocodile_4 = /*HTML*/`
+            <div class="poemTextStyle">
+                <h2>O Ye Tongues (utdrag)</h2>
+                <div>
+                    <p class="topSubtitle">dikt av Anne Sexton (1928-1974), del 7 av 10</p>
+                    <p class="topSubtitle">hentet fra Poetry Foundation</p>
+                </div>
+                <span>(...)  <b>Seventh Psalm</b></span>
+                <div class="poemExcerptStyle">
+                    <p>Let all rejoice with a boa whose twenty feet loosen the tree
+                        and the rock and coil like a rubber rope.</p>
+                    <p>Rejoice with the Postmaster General who sits at his desk
+                        in Washington and draws faces on the stamps.</p>
+                    <p>Bring forth the vulture who is a meat watcher from the clouds.</p>
+                    <p>Give praise with the spider who builds a city out of her toes.</p>
+                    <p>Rejoice with the Japanese beetle who feasts on rose petals,
+                        those mouths of honey.</p>
+                    <p>Rejoice with Peter Pan who flies gold to the <span class="greenCroco">crocodile.</span></p>
+                    <p>Rejoice with the sea otter who floats on her back and carries
+                        her young on her tummy.</p>
+                    <p>Give praise with the lobster who is the almighty picker-upper
+                        and is still fine to the tongue.</p>
+                    <p>Rejoice with the oyster who lies safely in his hard-nosed
+                        shell and who can be eaten alive.</p>
+                    <p>Rejoice with the panda bear who hugs himself.</p>
+                    <p>Rejoice with the panda bear who hugs himself.</p>
+                    <p>Rejoice with the anchovy who darts in and out of salads.</p>
+                    <p>Give praise with the barnacle who cements himself to the rock
+                        and lets the waves feed him green stuff.</p>
+                    <p>Give praise with the whale who will make a big warm home for
+                        Jonah and let him hang his very own pictures up.</p>
+                    <p>Give praise with the grape for lovers will wear them on their
+                        toes.</p>
+                    <p>Rejoice with the potato which is a sweet lover and made of
+                        angel-mattresses.</p>
+                    <p>Rejoice with broccoli for it is a good bush-of-a-face and goes
+                        nicely in the mouth.</p>
+                    <p>Let Christopher and Anne rejoice with Winston Churchill and
+                        his hot and cold Blitz.</p>
+                    <p>Let them rejoice with the speedboat that skims by, leaving white
+                        lines behind it, making the sea a tennis court for a minute.</p>
+                    </div>
+                <p class="poemBonusStyle">(...)</p>
+                <p class="endSubtitle">
+                    <a href="https://www.poetryfoundation.org/poems/152252/o-ye-tongues">
+                        link til dikt
+                    </a>
+                </p>
+            </div>
+        `;
+        let poemEntry = "";
+        const poems = [crocodile_1, crocodile_2, crocodile_3, crocodile_4];
+        let randomPoem = Math.floor(Math.random()*poems.length);
+
+
+        let Januar = /*HTML*/`<div><i>fra janus.</div><div>with <b>love</b></div><div>so much love.</i></div>`;
+        let April = /*HTML*/`<div><b>i et mørke</div><div>skinner et <i>hat</i></div><div>fra <i>venus</i></b></div>`;
+        let Desember = `sdfghjkl <br/> kdskfjflk <br/> sjdsasdkø`;
+        let monthsEntry="";
+        const months = [Januar, April,Desember];
+        let randomTestingTesting=Math.floor(Math.random()*months.length);
+        // let poem = poems[Math.floor(Math.random()*items.length] <-- tror dette vil funke!
+        // https://stackoverflow.com/questions/5915096/get-a-random-item-from-a-javascript-array
+
+        
+        // View 
+        updateView()
+        function updateView(){
+            document.getElementById("app").innerHTML= /*HTML*/`
+                <h1>Kodelång! Guess the number!</h1>
+
+                <div>
+                    <input type="number" onchange="inputtedAnswer = this.value" value="${inputtedAnswer}">
+                    <span>?</span>
+                    <span>${number}</span>
+                </div>
+                <div>
+                    <button onclick="isThisRight()">Høyere eller lavere?</button>
+                    <button onclick="randomiseNewNumber()">Sett nytt nummer!</button>
+                    <button onclick="showthegoods()">Vis nummeret!</button>
+                </div>
+
+                <div>${correctOrIncorrect}</div>
+                <!--VURDER EN KNAPP BORT HIT!!!!
+                <div>BUTTON!!!!!!</div>
+                -->
+                <div>${poemEntry}</div>
+                <div>${monthsEntry}</div>
+
+                <div class="notater_fra_oppgave">
+                    <div>
+                        NOTAT TIL SELV!!!!
+                        <p>1) Vurder å legge til en knapp sånn at man kan åpne og lukke diktet.
+                            "Her fikk du et dikt", noe i den duren!</p>
+                        <p>2) <b><i>DONZO!!!!!!!!</i></b> <s>Legg til en scrollfunksjon til diktet! Det plager meg at den blir så langt,
+                            jeg har lyst på standarisert høyde!!</s></p>
+                    </div>
+                    <br/>
+                    <div>
+                        Lag et input hvor du kan skrive inn et tall, og en knapp man skal kunne trykke på for å
+                        få en beskjed på skjermen om tallet har en verdi som er høyere enn 5, og en annen beskjed
+                        om tallet er lavere enn 5. 
+                    </div>
+                    <div>
+                        Er tallet AKKURAT 5, skal det komme en beskjed om at man har tippet riktig tall. 
+                    </div>
+                    <div>
+                        Bytt så ut det hardkodede tallet 5 med et tilfeldig generert tall mellom 0 og 100 ved å bruke Math.Random().
+                    </div>
+                    <div>
+                        Forsøk å trekke random tall genereringen ut i en egen funksjon med return
+                    </div>
+                </div>
+                `;
+            }
+
+        //Controller
+        function isThisRight(){
+            /* document.getElementById("bimmo").innerHTML=unknown; */
+            /* document.getElementById("bimmo").innerHTML =  */
+            // Sjekker om inputtedAnswer er riktig og så setter variablen correctOrIncorrect til en tekst, så vi kan vise om det var for høyt, mindre eller riktig
+            if(inputtedAnswer>unknown){
+                /*document.getElementById("correctOrIncorrect").innerHTML <- kill your darlings? No, keep them as zombies*/
+                correctOrIncorrect =
+                /*HTML*/`
+                For høyt!`;
+            } else if (inputtedAnswer<unknown){
+                correctOrIncorrect =
+                /*HTML*/`
+                For lavt!`;
+            } else if (inputtedAnswer==unknown){
+                correctOrIncorrect =
+                /*HTML*/`
+                Riktig!!`;
+                // satte inn variabler for at dikt skal dukke opp når man har gjort det riktig.
+                // de dukker opp MEN de forsvinner ikke etter at man setter nytt tall. Men ellers godt tenkt!
+                // Det er BLA. __HER__!!!! at jeg kunne satt en knapp...!!
+                poemEntry =
+                /*HTML*/`<div class="poemStyle">${poems[randomPoem]}</div>`;
+                randomPoem=Math.floor(Math.random()*poems.length);
+                monthsEntry=
+                /*HTML*/`<div class="red">${months[randomTestingTesting]}</div>`;
+                randomTestingTesting=Math.floor(Math.random()*months.length);
+                updateView();
+            }
+            //deretter oppdateres viewet!
+            updateView();
+        }
+
+        randomiseNewNumber()
+        function randomiseNewNumber(){
+            // setter unknown til ett random number mellom 0 og 99
+            unknown = Math.floor((Math.random()*100)+0);
+            poemEntry = "";
+            monthsEntry = "";
+            //deretter oppdateres viewet!
+            updateView();
+        }
+
+        function showthegoods(){
+            // setter isNumberShowing til det motsatte av seg selv
+            isNumberShowing = !isNumberShowing;
+
+            // sjekker om isNumberShowing er sant og vis det er sant så viser det unknown
+            if (isNumberShowing == true){
+                number = unknown
+            }
+            else {
+                // vis ikke det er sant så setter det number til X 
+                number = "X"
+            }
+            // også kaller vi updateView() så alt blir vist etter at det har blitt endret
+            updateView();
+        }
+
+        function showPoem(){
+            
+        }
+
+    </script>
+    <!--Math,
+        se også splice og combine!!
+    Inputfelt,
+    Arrays!!!! Hvordan kan jeg få
+    ! <- betyr motsatt, altså "false"
+    se også RETURN!!!!
+        https://stackoverflow.com/questions/21397743/passing-html-input-value-as-a-javascript-function-parameter
+    -->
+</body>
+</html>

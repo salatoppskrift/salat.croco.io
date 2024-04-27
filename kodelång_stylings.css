@@ -1,0 +1,59 @@
+body{
+    background-color: #7daaac;
+}
+
+div {
+    margin-bottom: 10px;
+}
+
+/*REN TEST!!!! CALL IT JOHNNY TEST FOR HOW TESTY IT GOT*/
+.red {
+    color: #c43b64;
+    background-color: #860f29;
+}
+
+/*DIKT ALTSÅ STIL TIL DIKT!!!!!!!!*/
+.poemStyle {
+    margin-left: 160px; margin-top: 20px;
+    width: 800px; height: 380px;
+    padding: 10px;
+    background-color: #a0d3c2;
+        --mask: 
+          linear-gradient(#000 0 0) 50%/calc(100% - 12.95px) calc(100% - 12.95px) no-repeat,
+          radial-gradient(farthest-side,#000 98%,#0000) 0 0/14px 14px round;
+        -webkit-mask: var(--mask);
+                mask: var(--mask);
+    color: #ecf9fa; font-style: italic;
+    overflow-y: scroll;
+} .poemTextStyle{
+        padding: 10px;
+        font-size: 18px;
+    } .topSubtitle, h2{
+        text-align: center;
+        margin: 0px; padding: 0px; gap: 0px;
+    } h2{
+        padding-bottom: 10px;
+    } .poemBonusStyle{
+        text-align: start;
+    } .poemExcerptStyle{
+        padding-left: 40px; padding-right: 10px;
+    } span.greenCroco{
+        color: #dafddc;
+    } p.endSubtitle{
+        text-align: right;
+    }
+
+/*NOTATER PÅ BUNNEN AV SIDEN, EGNE NOTATER!!!!!*/
+
+.notater_fra_oppgave {
+    width: 600px; margin-top: 300px;
+    padding: 10px;
+    background-color: #a0d3d0;
+        --mask: 
+          linear-gradient(#000 0 0) 50%/calc(100% - 12.95px) calc(100% - 12.95px) no-repeat,
+          radial-gradient(farthest-side,#000 98%,#0000) 0 0/14px 14px round;
+        -webkit-mask: var(--mask);
+                mask: var(--mask);
+    color: #e0fdff; font-style: italic;
+    
+}
