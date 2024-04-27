@@ -155,13 +155,6 @@
         const poems = [crocodile_1, crocodile_2, crocodile_3, crocodile_4];
         let randomPoem = Math.floor(Math.random()*poems.length);
 
-
-        let Januar = /*HTML*/`<div><i>fra janus.</div><div>with <b>love</b></div><div>so much love.</i></div>`;
-        let April = /*HTML*/`<div><b>i et mørke</div><div>skinner et <i>hat</i></div><div>fra <i>venus</i></b></div>`;
-        let Desember = `sdfghjkl <br/> kdskfjflk <br/> sjdsasdkø`;
-        let monthsEntry="";
-        const months = [Januar, April,Desember];
-        let randomTestingTesting=Math.floor(Math.random()*months.length);
         // let poem = poems[Math.floor(Math.random()*items.length] <-- tror dette vil funke!
         // https://stackoverflow.com/questions/5915096/get-a-random-item-from-a-javascript-array
 
@@ -188,8 +181,7 @@
                 <div>BUTTON!!!!!!</div>
                 -->
                 <div>${poemEntry}</div>
-                <div>${monthsEntry}</div>
-
+                
                 <div class="notater_fra_oppgave">
                     <div>
                         NOTAT TIL SELV!!!!
@@ -241,9 +233,6 @@
                 poemEntry =
                 /*HTML*/`<div class="poemStyle">${poems[randomPoem]}</div>`;
                 randomPoem=Math.floor(Math.random()*poems.length);
-                monthsEntry=
-                /*HTML*/`<div class="red">${months[randomTestingTesting]}</div>`;
-                randomTestingTesting=Math.floor(Math.random()*months.length);
                 updateView();
             }
             //deretter oppdateres viewet!
@@ -255,7 +244,6 @@
             // setter unknown til ett random number mellom 0 og 99
             unknown = Math.floor((Math.random()*100)+0);
             poemEntry = "";
-            monthsEntry = "";
             //deretter oppdateres viewet!
             updateView();
         }
